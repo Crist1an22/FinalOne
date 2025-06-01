@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Registro de Asistencia</title>
+    <link rel="stylesheet" href="asistencia.css">
+</head>
+
+<body>
+    <h1>Asistencia</h1>
+
+    <form id="form-asistencia">
+        <input type="date" id="fecha">
+        <input type="time" id="horaInicio">
+        <input type="time" id="horaFinal">
+        <input type="text" id="documento" placeholder="Documento estudiante">
+        <select id="estado">
+            <option value="0">A tiempo</option>
+            <option value="1">Tarde</option>
+            <option value="2">No asistió</option>
+        </select>
+        <button type="submit">Registrar</button>
+    </form>
+
+    <div id="asistencias"></div>
+
+    <script src="asistencia.js"></script>
+</body>
+
+</html>
