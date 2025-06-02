@@ -1,38 +1,32 @@
-document.getElementById('form-asistencia').addEventListener('submit', function(e) {
+document.getElementById("form-asistencia").addEventListener("submit", async function (e) {
     e.preventDefault();
-
-    const fecha = document.getElementById('fecha').value;
-    const horaInicio = document.getElementById('horaInicio').value;
-    const horaFinal = document.getElementById('horaFinal').value;
-    const documento = document.getElementById('documento').value;
-    const estado = document.getElementById('estado').value;
-
-    const registro = {
-        fecha,
-        horaInicio,
-        horaFinal,
-        documento,
-        estado
+  
+    const asistencia = {
+      fecha: document.getElementById("fecha").value,
+      horaInicio: document.getElementById("horaInicio").value,
+      horaFinal: document.getElementById("horaFinal").value,
+      documento: document.getElementById("documento").value,
+      estado: parseInt(document.getElementById("estado").value),
     };
-
-    let asistencias = JSON.parse(localStorage.getItem('asistencias')) || [];
-    asistencias.push(registro);
-    localStorage.setItem('asistencias', JSON.stringify(asistencias));
-
-    mostrarAsistencias();
-});
-
-function mostrarAsistencias() {
-    const container = document.getElementById('asistencias');
-    const asistencias = JSON.parse(localStorage.getItem('asistencias')) || [];
-
-    container.innerHTML = '';
-    asistencias.forEach((a) => {
-        const estadoTexto = ["A tiempo", "Tarde", "No asistió"][parseInt(a.estado)];
-        container.innerHTML += `
-            <p>${a.fecha} | ${a.horaInicio} - ${a.horaFinal} | Doc: ${a.documento} | Estado: ${estadoTexto}</p>
-        `;
-    });
-}
-
-document.addEventListener('DOMContentLoaded', mostrarAsistencias);
+  
+    try {
+      const response = await fetch("/.netlify/functions/asistencia", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(asistencia),
+      });
+  
+      const resultado = await response.json();
+  
+      if (response.ok) {
+        alert(resultado.mensaje);
+        document.getElementById("form-asistencia").reset();
+      } else {
+        alert("Error: " + resultado.error);
+      }
+    } catch (err) {
+      console.error("Error al registrar asistencia:", err);
+      alert("Error al conectar con el servidor");
+    }
+  });
+  

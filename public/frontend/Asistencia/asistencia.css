@@ -1,68 +1,82 @@
-body {
-    font-family: 'Segoe UI', sans-serif;
-    background: linear-gradient(to bottom right, #f3e6ff, #e9d4ff);
-    background-image: url('https://images6.alphacoders.com/114/thumb-1920-1148181.png');
-    background-size: cover;
-    background-attachment: fixed;
-    background-blend-mode: lighten;
-    color: #4b2773;
-    padding: 40px;
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-h1 {
-    text-align: center;
-    color: #f9f9f9;
-    font-size: 2.2em;
-    margin-bottom: 30px;
+body,
+html {
+    font-family: 'Segoe UI', sans-serif;
+    height: 100%;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+    width: 100%;
+}
+
+.form-panel {
+    flex: 1;
+    padding: 40px;
+    background: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.image-panel {
+    flex: 1;
+    background-image: url('https://static.pollstar.com/wp-content/uploads/2022/02/0f018592-4d05-42ef-a812-3a0b26b08551-leon-de-greiff-hall-at-national-university-of-colombia-in-bogota.jpg');
+    background-size: cover;
+    background-position: center;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 20px;
+    margin-top: -20px;
+    color: #ff6600;
+    align-self: flex-start;
 }
 
 form {
-    background-color: rgba(255, 255, 255, 0.9);
-    padding: 30px;
-    max-width: 650px;
-    margin: auto;
-    border-radius: 14px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
 }
 
-form input,
-form select {
-    width: 100%;
-    padding: 12px;
-    margin: 12px 0;
-    border: 1px solid #d5b8f2;
-    border-radius: 8px;
-    font-size: 1em;
+label {
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+input,
+select {
+    padding: 10px;
+    margin-top: 5px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
 }
 
 button {
-    background-color: #b077f3;
+    margin-top: 20px;
+    padding: 12px;
+    background-color: #f2633b;
     color: white;
+    font-weight: bold;
     border: none;
-    padding: 12px 24px;
-    font-size: 1em;
-    border-radius: 8px;
+    border-radius: 6px;
     cursor: pointer;
-    transition: 0.3s ease-in-out;
 }
 
 button:hover {
-    background-color: #944fd1;
-}
-
-#asistencias {
-    margin-top: 30px;
-    background-color: rgba(255, 255, 255, 0.92);
-    padding: 20px;
-    border-radius: 10px;
-    max-width: 720px;
-    margin-left: auto;
-    margin-right: auto;
+    background-color: #e14d22;
 }
 
 .btn-volver {
     display: inline-block;
-    margin: 1rem;
+    margin-top: 15px;
     padding: 10px 15px;
     background-color: #fff;
     color: #5e2bff;
@@ -70,7 +84,7 @@ button:hover {
     border-radius: 8px;
     font-weight: bold;
     text-decoration: none;
-    transition: 0.3s ease;
+    text-align: center;
 }
 
 .btn-volver:hover {

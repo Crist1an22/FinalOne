@@ -1,58 +1,80 @@
+/* Reset y base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
     font-family: 'Segoe UI', sans-serif;
-    background: url('https://images6.alphacoders.com/114/thumb-1920-1148181.png') no-repeat center center fixed;
-    background-size: cover;
-    color: #f9f9f9;
-    padding: 40px;
-    text-align: center;
-    overflow-x: hidden;
-}
-
-h1 {
-    font-size: 3em;
-    color: #fff0ff;
-    margin-bottom: 60px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-}
-
-.menu-vintage {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.menu-item {
-    background-color: rgba(255, 255, 255, 0.08);
-    border: 1px solid #ffffff33;
-    border-radius: 15px;
-    padding: 20px 30px;
-    width: 200px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    backdrop-filter: blur(6px);
-}
-
-.menu-item:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 0 18px rgba(255, 255, 255, 0.2);
-}
-
-.menu-item a {
-    text-decoration: none;
-    color: #fff0ff;
-    font-size: 1.1em;
-    font-weight: bold;
+    background: linear-gradient(135deg, #eef1f5, #dbe4f0);
+    color: #1e2a38;
+    min-height: 100vh;
+    padding: 60px 20px;
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
-.menu-item .icon {
-    font-size: 2.5em;
-    margin-bottom: 10px;
+/* Encabezado */
+.main-header {
+    text-align: center;
+    margin-bottom: 50px;
 }
 
-.menu-item .label {
-    font-family: 'Courier New', monospace;
-    letter-spacing: 1px;
+.main-header h1 {
+    font-size: 3rem;
+    font-weight: bold;
+    color: #2d3e50;
+}
+
+.subtitle {
+    font-size: 1.1rem;
+    color: #5e6e89;
+    margin-top: 10px;
+}
+
+/* Menú principal */
+.menu {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 30px;
+    max-width: 1000px;
+    width: 100%;
+}
+
+/* Tarjetas */
+.card {
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    color: #1e2a38;
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+}
+
+.icon {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    color: #5e2bff;
+}
+
+.text {
+    font-weight: 600;
+    font-size: 1.2rem;
+}
+
+/* Pie de página */
+footer {
+    margin-top: 60px;
+    font-size: 0.9rem;
+    color: #8a97a8;
+    text-align: center;
 }

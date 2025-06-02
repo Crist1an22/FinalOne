@@ -3,30 +3,45 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Registro de Asistencia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CM Academy - Asistencia</title>
     <link rel="stylesheet" href="asistencia.css">
 </head>
 
 <body>
 
-    <a href="../../index.html" class="btn-volver">← Volver al Menú Principal</a>
+    <div class="container">
+        <div class="form-panel">
+            <div class="logo">📝 CM Academy</div>
+            <h2>Registro de Asistencia</h2>
 
-    <h1>Asistencia</h1>
+            <form id="form-asistencia">
+                <label for="fecha">Fecha</label>
+                <input type="date" id="fecha" required>
 
-    <form id="form-asistencia">
-        <input type="date" id="fecha">
-        <input type="time" id="horaInicio">
-        <input type="time" id="horaFinal">
-        <input type="text" id="documento" placeholder="Documento estudiante">
-        <select id="estado">
-            <option value="0">A tiempo</option>
-            <option value="1">Tarde</option>
-            <option value="2">No asistió</option>
-        </select>
-        <button type="submit">Registrar</button>
-    </form>
+                <label for="horaInicio">Hora de Inicio</label>
+                <input type="time" id="horaInicio" required>
 
-    <div id="asistencias"></div>
+                <label for="horaFinal">Hora Final</label>
+                <input type="time" id="horaFinal" required>
+
+                <label for="documento">Documento del Estudiante</label>
+                <input type="text" id="documento" placeholder="Ej: 12345678" required>
+
+                <label for="estado">Estado</label>
+                <select id="estado" required>
+                    <option value="0">A tiempo</option>
+                    <option value="1">Tarde</option>
+                    <option value="2">No asistió</option>
+                </select>
+
+                <button type="submit">Registrar</button>
+                <a class="btn-volver" href="../../index.html">Volver al menú principal</a>
+            </form>
+        </div>
+
+        <div class="image-panel"></div>
+    </div>
 
     <script src="asistencia.js"></script>
 </body>

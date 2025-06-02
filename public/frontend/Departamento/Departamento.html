@@ -3,25 +3,28 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Nombre del Departamento</title>
+    <title>CM Academy - Departamento</title>
     <link rel="stylesheet" href="departamento.css">
-
 </head>
 
 <body>
-    
+    <div class="container">
+        <div class="form-panel">
+            <div class="logo">🏢 CM Academy</div>
+            <h2>Gestión de Departamento</h2>
 
-    <a href="../../index.html" class="btn-volver">← Volver al Menú Principal</a>
-    <h1>Departamento</h1>
+            <p>Nombre actual: <span id="nombreDepartamento">---</span></p>
 
-    <div>
-        <p>Nombre actual: <span id="nombreDepartamento"></span></p>
+            <form id="form-departamento">
+                <label for="nuevoNombre">Nuevo nombre</label>
+                <input type="text" id="nuevoNombre" placeholder="Nuevo nombre del departamento" required>
+                <button type="submit">Actualizar</button>
+                <a class="btn-volver" href="../../index.html">Volver al menú principal</a>
+            </form>
+        </div>
+
+        <div class="image-panel"></div>
     </div>
-
-    <form id="form-departamento">
-        <input type="text" id="nuevoNombre" placeholder="Nuevo nombre">
-        <button type="submit">Actualizar</button>
-    </form>
 
     <script src="departamento.js"></script>
 </body>

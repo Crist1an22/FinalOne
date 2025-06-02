@@ -1,37 +1,29 @@
-document.getElementById('form-asignatura').addEventListener('submit', function(e) {
-    e.preventDefault();
-
-    const codigo = document.getElementById('codigo').value;
-    const grupo = document.getElementById('grupo').value;
-    const semestre = document.getElementById('semestre').value;
-    const nombre = document.getElementById('nombre').value;
-    const creditos = document.getElementById('creditos').value;
-
+document.getElementById('formulario-asignatura').addEventListener('submit', function (event) {
+    event.preventDefault();
+  
     const asignatura = {
-        codigo,
-        grupo,
-        semestre,
-        nombre,
-        creditos
+      codigo: document.getElementById('codigo').value,
+      nombre: document.getElementById('nombre').value,
+      grupo: document.getElementById('grupo').value,
+      docente: document.getElementById('docente').value,
+      semestre: document.getElementById('semestre').value
     };
-
-    let asignaturas = JSON.parse(localStorage.getItem('asignaturas')) || [];
-    asignaturas.push(asignatura);
-    localStorage.setItem('asignaturas', JSON.stringify(asignaturas));
-
-    mostrarAsignaturas();
-});
-
-function mostrarAsignaturas() {
-    const container = document.getElementById('asignaturas');
-    const asignaturas = JSON.parse(localStorage.getItem('asignaturas')) || [];
-
-    container.innerHTML = '';
-    asignaturas.forEach((a, index) => {
-        container.innerHTML += `
-            <p>${a.codigo} - ${a.nombre} (${a.semestre}) | Créditos: ${a.creditos}</p>
-        `;
-    });
-}
-
-document.addEventListener('DOMContentLoaded', mostrarAsignaturas);
+  
+    fetch("/.netlify/functions/agregarAsignatura", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(asignatura)
+    })
+      .then(response => response.json())
+      .then(data => {
+        alert("Asignatura guardada exitosamente");
+        document.getElementById('formulario-asignatura').reset();
+      })
+      .catch(error => {
+        console.error("Error al guardar:", error);
+        alert("Ocurrió un error al guardar");
+      });
+  });
+  

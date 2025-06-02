@@ -1,4 +1,5 @@
-document.getElementById('form-estudiante').addEventListener('submit', function(e) {
+// REGISTRAR ESTUDIANTE
+document.getElementById('form-estudiante').addEventListener('submit', async function(e) {
     e.preventDefault();
 
     const estudiante = {
@@ -10,23 +11,51 @@ document.getElementById('form-estudiante').addEventListener('submit', function(e
         semestre: document.getElementById('semestre').value
     };
 
-    let estudiantes = JSON.parse(localStorage.getItem('estudiantes')) || [];
-    estudiantes.push(estudiante);
-    localStorage.setItem('estudiantes', JSON.stringify(estudiantes));
+    try {
+        const response = await fetch('/.netlify/functions/estudiante', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(estudiante)
+        });
 
-    mostrarEstudiantes();
+        const resultado = await response.json();
+
+        if (response.ok) {
+            alert("✅ Estudiante registrado con éxito");
+            document.getElementById('form-estudiante').reset();
+            mostrarEstudiantes();
+        } else {
+            alert("❌ Error: " + resultado.error);
+        }
+    } catch (error) {
+        console.error("Error al registrar estudiante:", error);
+        alert("❌ No se pudo registrar el estudiante.");
+    }
 });
 
-function mostrarEstudiantes() {
+// MOSTRAR ESTUDIANTES
+async function mostrarEstudiantes() {
     const container = document.getElementById('estudiantes');
-    const estudiantes = JSON.parse(localStorage.getItem('estudiantes')) || [];
+    container.innerHTML = 'Cargando...';
 
-    container.innerHTML = '';
-    estudiantes.forEach(e => {
-        container.innerHTML += `
-            <p>${e.nombres} ${e.apellidos} - ${e.tipoDocumento}: ${e.numeroDocumento} | ${e.programa} - Semestre ${e.semestre}</p>
-        `;
-    });
+    try {
+        const response = await fetch('/.netlify/functions/estudiante?listar=true');
+        const data = await response.json();
+
+        if (response.ok) {
+            container.innerHTML = '';
+            data.forEach(e => {
+                container.innerHTML += `
+                    <p>${e.nombres} ${e.apellidos} - ${e.tipoDocumento}: ${e.numeroDocumento} | ${e.programa} - Semestre ${e.semestre}</p>
+                `;
+            });
+        } else {
+            container.innerHTML = 'Error al cargar estudiantes.';
+        }
+    } catch (error) {
+        console.error("Error al cargar estudiantes:", error);
+        container.innerHTML = 'No se pudieron cargar los estudiantes.';
+    }
 }
 
 document.addEventListener('DOMContentLoaded', mostrarEstudiantes);

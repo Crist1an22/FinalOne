@@ -1,24 +1,24 @@
-
 const { db } = require("./firebaseAdmin");
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   if (event.httpMethod === "POST") {
     try {
-      const data = JSON.parse(event.body);
-      if (!data.nombre) {
+      const { nombre } = JSON.parse(event.body);
+
+      if (!nombre) {
         return {
           statusCode: 400,
-          body: JSON.stringify({ error: "El nombre del departamento es obligatorio" }),
+          body: JSON.stringify({ error: "Nombre requerido" }),
         };
       }
 
-      await db.collection("departamentos").add(data);
+      await db.collection("departamentos").add({ nombre });
 
       return {
         statusCode: 200,
         body: JSON.stringify({ mensaje: "Departamento registrado con éxito" }),
       };
-    } catch (error) {
+    } catch (err) {
       return {
         statusCode: 500,
         body: JSON.stringify({ error: "Error interno del servidor" }),

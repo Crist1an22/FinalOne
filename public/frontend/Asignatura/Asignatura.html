@@ -2,26 +2,47 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Gestión de Asignaturas</title>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CM Academy - Gestión Asignatura</title>
     <link rel="stylesheet" href="asignatura.css">
 </head>
 
 <body>
-    <a href="../../index.html" class="btn-volver">← Volver al Menú Principal</a>
+    <div class="container">
+        <div class="form-panel">
+            <div class="logo">📚 CM Academy</div>
 
-    <h1>Asignaturas</h1>
+            <h2>Asignaturas</h2>
+            <p>Registro de asignaturas</p>
 
-    <form id="form-asignatura">
-        <input type="text" id="codigo" placeholder="Código">
-        <input type="text" id="grupo" placeholder="Grupo">
-        <input type="text" id="semestre" placeholder="Semestre">
-        <input type="text" id="nombre" placeholder="Nombre">
-        <input type="number" id="creditos" placeholder="Créditos">
-        <button type="submit">Agregar</button>
-    </form>
+            <form id="formulario-asignatura">
+                <label for="codigo">Código</label>
+                <input type="text" id="codigo" required placeholder="Ej: MAT101">
 
-    <div id="asignaturas"></div>
+                <label for="grupo">Grupo</label>
+                <input type="text" id="grupo" required placeholder="Ej: 1">
+
+                <label for="semestre">Semestre</label>
+                <input type="text" id="semestre" required placeholder="Ej: 2025-I">
+
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" required placeholder="Ej: Cálculo Integral">
+
+                <label for="creditos">Créditos</label>
+                <input type="text" id="creditos" required placeholder="Ej: 3">
+
+                <button type="submit">Guardar</button>
+                <a class="btn-volver" href="../../index.html">Volver al menú principal</a>
+            </form>
+
+            <!-- 🔽 NUEVA SECCIÓN PARA CONSULTA DE ASIGNATURAS -->
+            <h3 style="margin-top: 40px;">Asignaturas Registradas</h3>
+            <div id="asignaturas-lista" style="margin-top: 15px;"></div>
+        </div>
+
+        <div class="image-panel"></div>
+    </div>
 
     <script src="asignatura.js"></script>
 </body>

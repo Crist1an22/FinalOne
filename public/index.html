@@ -2,42 +2,119 @@
 <html lang="es">
 
 <head>
-    <meta charset="UTF-8">
-    <title>Menú Principal - Sistema Académico</title>
-    <link rel="stylesheet" href="index.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CM Academy - Menú Principal</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #eef1f5, #dbe4f0);
+            color: #1e2a38;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            padding: 60px 20px;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .header h1 {
+            font-size: 3.2rem;
+            font-weight: 800;
+            color: #2d3e50;
+        }
+
+        .header p {
+            font-size: 1.2rem;
+            color: #5e6e89;
+            margin-top: 10px;
+        }
+
+        .menu {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+        }
+
+        .card {
+            background-color: #fff;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            padding: 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            text-decoration: none;
+            color: #1e2a38;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .card .icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            color: #5e2bff;
+        }
+
+        .card .text {
+            font-size: 1.2rem;
+            font-weight: 600;
+        }
+
+        footer {
+            margin-top: 60px;
+            font-size: 0.9rem;
+            color: #8a97a8;
+        }
+    </style>
 </head>
 
 <body>
-    <h1>Sistema Académico</h1>
 
-    <div class="menu-vintage">
-        <div class="menu-item">
-            <a href="frontend/Departamento/Departamento.html">
-                <span class="icon">🏛️</span>
-                <span class="label">Departamento</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="frontend/Estudiante/Estudiante.html">
-                <span class="icon">🎓</span>
-                <span class="label">Estudiantes</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="frontend/Asignatura/Asignatura.html">
-                <span class="icon">📚</span>
-                <span class="label">Asignaturas</span>
-            </a>
-        </div>
-        <div class="menu-item">
-            <a href="frontend/Asistencia/Asistencia.html">
-                <span class="icon">📝</span>
-                <span class="label">Asistencias</span>
-            </a>
-        </div>
-    </div>
+    <header class="header">
+        <h1>CM Academy</h1>
+        <p>Sistema de Gestión Académica Inteligente</p>
+    </header>
 
-    <script src="Script.js"></script>
+    <main class="menu">
+        <a href="frontend/Departamento/Departamento.html" class="card">
+            <div class="icon">🏫</div>
+            <div class="text">Facultades</div>
+        </a>
+        <a href="frontend/Asignatura/asignatura.html" class="card">
+            <div class="icon">📚</div>
+            <div class="text">Asignaturas</div>
+        </a>
+        <a href="frontend/Estudiante/estudiante.html" class="card">
+            <div class="icon">🎓</div>
+            <div class="text">Estudiantes</div>
+        </a>
+        <a href="frontend/Asistencia/asistencia.html" class="card">
+            <div class="icon">📝</div>
+            <div class="text">Asistencias</div>
+        </a>
+    </main>
+
+    <footer>
+        © 2025 CM Academy · Desarrollado por Cris & May
+    </footer>
+
 </body>
 
 </html>
