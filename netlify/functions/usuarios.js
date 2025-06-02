@@ -4,18 +4,17 @@ exports.handler = async (event) => {
   try {
     const method = event.httpMethod;
 
-    // 📥 POST - Agregar estudiante
+    // POST - Agregar estudiante
     if (method === "POST") {
       const data = JSON.parse(event.body);
 
-      // Validación básica
+      // Validación EXACTA según frontend
       if (
         !data.tipoDocumento ||
         !data.numeroDocumento ||
         !data.nombres ||
         !data.apellidos ||
-        !data.programa ||
-        !data.semestre
+        !data.departamento
       ) {
         return {
           statusCode: 400,
@@ -31,7 +30,7 @@ exports.handler = async (event) => {
       };
     }
 
-    // 📤 GET - Listar estudiantes si hay ?listar=true
+    // GET - Listar estudiantes si hay ?listar=true
     if (method === "GET" && event.queryStringParameters?.listar === "true") {
       const snapshot = await db.collection("estudiantes").get();
       const estudiantes = snapshot.docs.map(doc => doc.data());
@@ -66,7 +65,7 @@ exports.handler = async (event) => {
     };
 
   } catch (error) {
-    console.error("🔥 Error en función usuarios:", error);
+    console.error(" Error en función usuarios:", error);
     return {
       statusCode: 500,
       body: JSON.stringify({ error: "Error interno del servidor" }),
