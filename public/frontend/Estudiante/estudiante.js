@@ -1,4 +1,3 @@
-// REGISTRAR ESTUDIANTE
 document.getElementById('form-estudiante').addEventListener('submit', async function(e) {
     e.preventDefault();
 
@@ -7,8 +6,7 @@ document.getElementById('form-estudiante').addEventListener('submit', async func
         numeroDocumento: document.getElementById('numeroDocumento').value,
         nombres: document.getElementById('nombres').value,
         apellidos: document.getElementById('apellidos').value,
-        programa: document.getElementById('programa').value,
-        semestre: document.getElementById('semestre').value
+        departamento: document.getElementById('departamento').value
     };
 
     try {
@@ -33,20 +31,19 @@ document.getElementById('form-estudiante').addEventListener('submit', async func
     }
 });
 
-// MOSTRAR ESTUDIANTES
 async function mostrarEstudiantes() {
     const container = document.getElementById('estudiantes');
     container.innerHTML = 'Cargando...';
 
     try {
-        const response = await fetch('/.netlify/functions/estudiante?listar=true');
+        const response = await fetch('/.netlify/functions/usuarios?listar=true');
         const data = await response.json();
 
         if (response.ok) {
             container.innerHTML = '';
             data.forEach(e => {
                 container.innerHTML += `
-                    <p>${e.nombres} ${e.apellidos} - ${e.tipoDocumento}: ${e.numeroDocumento} | ${e.programa} - Semestre ${e.semestre}</p>
+                    <p>${e.nombres} ${e.apellidos} - ${e.tipoDocumento}: ${e.numeroDocumento} | Departamento: ${e.departamento}</p>
                 `;
             });
         } else {
