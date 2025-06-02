@@ -12,7 +12,7 @@ document.getElementById('form-estudiante').addEventListener('submit', async func
     };
 
     try {
-        const response = await fetch('/.netlify/functions/estudiantes', {
+        const response = await fetch('/.netlify/functions/usuarios', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(estudiante)

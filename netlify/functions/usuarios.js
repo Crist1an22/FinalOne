@@ -1,50 +1,61 @@
-
 const { db } = require("./firebaseAdmin");
 
-exports.handler = async (event, context) => {
+exports.handler = async (event) => {
   try {
     const method = event.httpMethod;
 
-    if (method === "GET") {
-      const userId = event.queryStringParameters?.id;
-      if (!userId) {
-        return {
-          statusCode: 400,
-          body: JSON.stringify({ error: "Falta el parámetro 'id'" }),
-        };
-      }
-
-      const userDoc = await db.collection("users").doc(userId).get();
-
-      if (!userDoc.exists) {
-        return {
-          statusCode: 404,
-          body: JSON.stringify({ error: "Usuario no encontrado: " + userId }),
-        };
-      }
-
-      return {
-        statusCode: 200,
-        body: JSON.stringify(userDoc.data()),
-      };
-    }
-
-    // 📥 POST - Crear nuevo usuario
+    // 📥 POST - Agregar estudiante
     if (method === "POST") {
       const data = JSON.parse(event.body);
 
-      if (!data.nombre || !data.apellidos || !data.email || !data.dni) {
+      // Validación básica
+      if (
+        !data.tipoDocumento ||
+        !data.numeroDocumento ||
+        !data.nombres ||
+        !data.apellidos ||
+        !data.programa ||
+        !data.semestre
+      ) {
         return {
           statusCode: 400,
           body: JSON.stringify({ error: "Faltan campos obligatorios" }),
         };
       }
 
-      const ref = await db.collection("users").add(data);
+      await db.collection("estudiantes").add(data);
 
       return {
         statusCode: 201,
-        body: JSON.stringify({ mensaje: "Usuario agregado", id: ref.id }),
+        body: JSON.stringify({ mensaje: "Estudiante agregado con éxito" }),
+      };
+    }
+
+    // 📤 GET - Listar estudiantes si hay ?listar=true
+    if (method === "GET" && event.queryStringParameters?.listar === "true") {
+      const snapshot = await db.collection("estudiantes").get();
+      const estudiantes = snapshot.docs.map(doc => doc.data());
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify(estudiantes),
+      };
+    }
+
+    // ❌ GET con ID (opcional si lo necesitas más adelante)
+    if (method === "GET" && event.queryStringParameters?.id) {
+      const doc = await db.collection("estudiantes").doc(event.queryStringParameters.id).get();
+
+      if (!doc.exists) {
+        return {
+          statusCode: 404,
+          body: JSON.stringify({ error: "Estudiante no encontrado" }),
+        };
+      }
+
+      return {
+        statusCode: 200,
+        body: JSON.stringify(doc.data()),
       };
     }
 
