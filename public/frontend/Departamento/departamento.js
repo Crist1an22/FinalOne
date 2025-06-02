@@ -12,7 +12,7 @@ document.getElementById('form-departamento').addEventListener('submit', function
         nombre: nuevoNombre
     };
 
-    fetch('/.netlify/functions/actualizarDepartamento', {
+    fetch('/.netlify/functions/departamentos.js', {
         method: 'POST',
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data)

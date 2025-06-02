@@ -10,7 +10,7 @@ document.getElementById("form-asistencia").addEventListener("submit", async func
     };
   
     try {
-      const response = await fetch("/.netlify/functions/asistencia", {
+      const response = await fetch("/.netlify/functions/asistencias", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(asistencia),

@@ -9,7 +9,7 @@ document.getElementById('formulario-asignatura').addEventListener('submit', func
       semestre: document.getElementById('semestre').value
     };
   
-    fetch("/.netlify/functions/agregarAsignatura", {
+    fetch("/.netlify/functions/Asignaturas", {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
